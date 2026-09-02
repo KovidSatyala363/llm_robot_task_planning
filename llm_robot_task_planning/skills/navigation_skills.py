@@ -1,0 +1,1 @@
+# Encapsulated skill functions interface

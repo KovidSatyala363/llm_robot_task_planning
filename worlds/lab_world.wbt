@@ -1,0 +1,493 @@
+#VRML_SIM R2025a utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/floors/protos/RectangleArena.proto"
+
+WorldInfo {
+  info [
+    "LLM-Assisted Mobile Robot Task Planning Laboratory Arena (ENU Coordinate System)"
+    "Simulated laboratory with entrance, storage, workbench, charging station, and inspection table."
+  ]
+  title "Mobile Robot Task Planning Lab"
+  basicTimeStep 32
+  gravity 9.81
+  coordinateSystem "ENU"
+}
+
+Viewpoint {
+  orientation -0.57 0.57 0.58 2.09
+  position 0.0 -6.5 5.5
+}
+
+TexturedBackground {
+  texture "factory"
+}
+
+TexturedBackgroundLight {
+  texture "factory"
+  luminosity 1.2
+}
+
+# Laboratory Floor (5.2m x 5.2m, Floor surface at Z = 0)
+RectangleArena {
+  translation 0 0 0
+  floorSize 5.2 5.2
+  floorTileSize 0.5 0.5
+  wallHeight 0.5
+  wallThickness 0.1
+  wallAppearance PBRAppearance {
+    baseColor 0.85 0.88 0.92
+    roughness 0.5
+  }
+}
+
+# ==============================================================================
+# Landmark 1: Entrance Staging Zone (0.0, -1.7) - Green
+# ==============================================================================
+Solid {
+  translation 0 -1.7 0.002
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.2 0.8 0.3
+        roughness 0.3
+      }
+      geometry Plane {
+        size 0.8 0.8
+      }
+    }
+  ]
+  name "zone_entrance"
+}
+
+# ==============================================================================
+# Landmark 2: Storage Area (-1.4, -1.2) - Yellow
+# ==============================================================================
+Solid {
+  translation -1.4 -1.2 0.002
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.95 0.75 0.1
+        roughness 0.3
+      }
+      geometry Plane {
+        size 0.8 0.8
+      }
+    }
+  ]
+  name "zone_storage"
+}
+
+# Storage Cabinet (Base on floor Z=0, Height=1.2m)
+Solid {
+  translation -2.1 -1.2 0.60
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.55 0.35 0.18
+        roughness 0.7
+      }
+      geometry Box {
+        size 0.4 1.0 1.2
+      }
+    }
+  ]
+  name "storage_cabinet"
+  boundingObject Box {
+    size 0.4 1.0 1.2
+  }
+}
+
+# Storage Wooden Box 1 (Horizontal flat on floor Z=0)
+Solid {
+  translation -2.0 -0.5 0.15
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.75 0.55 0.25
+        roughness 0.8
+      }
+      geometry Box {
+        size 0.35 0.35 0.30
+      }
+    }
+  ]
+  name "storage_box_floor_1"
+  boundingObject Box {
+    size 0.35 0.35 0.30
+  }
+}
+
+# Storage Wooden Box 2 (Horizontal flat on floor Z=0)
+Solid {
+  translation -2.0 -1.9 0.12
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.70 0.50 0.22
+        roughness 0.8
+      }
+      geometry Box {
+        size 0.30 0.30 0.24
+      }
+    }
+  ]
+  name "storage_box_floor_2"
+  boundingObject Box {
+    size 0.30 0.30 0.24
+  }
+}
+
+# ==============================================================================
+# Landmark 3: Workbench Area (1.4, -1.2) - Blue
+# ==============================================================================
+Solid {
+  translation 1.4 -1.2 0.002
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.1 0.5 0.9
+        roughness 0.3
+      }
+      geometry Plane {
+        size 0.8 0.8
+      }
+    }
+  ]
+  name "zone_workbench"
+}
+
+# Workbench Table (Base on floor Z=0, Height=0.80m)
+Solid {
+  translation 2.1 -1.2 0.40
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.2 0.45 0.75
+        roughness 0.4
+      }
+      geometry Box {
+        size 0.5 1.2 0.80
+      }
+    }
+  ]
+  name "workbench_table"
+  boundingObject Box {
+    size 0.5 1.2 0.80
+  }
+}
+
+# Tool Case on Workbench Table
+Solid {
+  translation 2.1 -1.2 0.85
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.15 0.15 0.15
+        roughness 0.5
+      }
+      geometry Box {
+        size 0.25 0.35 0.10
+      }
+    }
+  ]
+  name "workbench_toolcase"
+  boundingObject Box {
+    size 0.25 0.35 0.10
+  }
+}
+
+# ==============================================================================
+# Landmark 4: Charging Station (-1.4, 1.2) - Cyan
+# ==============================================================================
+Solid {
+  translation -1.4 1.2 0.002
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.1 0.85 0.85
+        roughness 0.3
+      }
+      geometry Plane {
+        size 0.8 0.8
+      }
+    }
+  ]
+  name "zone_charging_station"
+}
+
+# Charging Dock Terminal (Base on floor Z=0)
+Solid {
+  translation -2.1 1.2 0.35
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.25 0.75 0.75
+        roughness 0.3
+        emissiveColor 0.05 0.2 0.2
+      }
+      geometry Box {
+        size 0.35 0.50 0.70
+      }
+    }
+  ]
+  name "charging_dock_terminal"
+  boundingObject Box {
+    size 0.35 0.50 0.70
+  }
+}
+
+# ==============================================================================
+# Landmark 5: Inspection Table (1.4, 1.2) - Purple
+# ==============================================================================
+Solid {
+  translation 1.4 1.2 0.002
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.7 0.2 0.8
+        roughness 0.3
+      }
+      geometry Plane {
+        size 0.8 0.8
+      }
+    }
+  ]
+  name "zone_inspection_table"
+}
+
+# Inspection Station Table (Base on floor Z=0)
+Solid {
+  translation 2.1 1.2 0.40
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.55 0.20 0.65
+        roughness 0.4
+      }
+      geometry Box {
+        size 0.5 1.0 0.80
+      }
+    }
+  ]
+  name "inspection_table_unit"
+  boundingObject Box {
+    size 0.5 1.0 0.80
+  }
+}
+
+# ==============================================================================
+# Center Hub Marker (0.0, 0.0) - Gray
+# ==============================================================================
+Solid {
+  translation 0 0 0.002
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.6 0.6 0.6
+        transparency 0.3
+      }
+      geometry Plane {
+        size 0.5 0.5
+      }
+    }
+  ]
+  name "zone_center_hub"
+}
+
+# ==============================================================================
+# Mobile Robot: RoboMaster Mobile Research Base (agent0)
+# ==============================================================================
+Robot {
+  translation 0 -1.7 0.045
+  rotation 0 0 1 1.5708
+  children [
+    # Chassis Visual Body
+    Pose {
+      translation 0 0 0.04
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.2 0.2 0.25
+            metalness 0.5
+            roughness 0.3
+          }
+          geometry Box {
+            size 0.26 0.20 0.06
+          }
+        }
+        # LED Indicator
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.1 0.8 0.2
+            emissiveColor 0.1 0.8 0.2
+          }
+          geometry Cylinder {
+            height 0.02
+            radius 0.04
+          }
+        }
+      ]
+    }
+    # Left Wheel (+Y = +0.12m)
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        axis 0 1 0
+        anchor 0.0 0.12 0.0
+      }
+      device [
+        RotationalMotor {
+          name "left wheel motor"
+          maxVelocity 25
+          maxTorque 50
+        }
+        PositionSensor {
+          name "left wheel sensor"
+        }
+      ]
+      endPoint Solid {
+        translation 0.0 0.12 0.0
+        rotation 1 0 0 1.5708
+        children [
+          Shape {
+            appearance PBRAppearance {
+              baseColor 0.1 0.1 0.1
+              roughness 0.9
+            }
+            geometry Cylinder {
+              height 0.03
+              radius 0.045
+            }
+          }
+        ]
+        boundingObject Cylinder {
+          height 0.03
+          radius 0.045
+        }
+        physics Physics {
+          density -1
+          mass 0.4
+        }
+        name "left_wheel"
+      }
+    }
+    # Right Wheel (-Y = -0.12m)
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        axis 0 1 0
+        anchor 0.0 -0.12 0.0
+      }
+      device [
+        RotationalMotor {
+          name "right wheel motor"
+          maxVelocity 25
+          maxTorque 50
+        }
+        PositionSensor {
+          name "right wheel sensor"
+        }
+      ]
+      endPoint Solid {
+        translation 0.0 -0.12 0.0
+        rotation 1 0 0 1.5708
+        children [
+          Shape {
+            appearance PBRAppearance {
+              baseColor 0.1 0.1 0.1
+              roughness 0.9
+            }
+            geometry Cylinder {
+              height 0.03
+              radius 0.045
+            }
+          }
+        ]
+        boundingObject Cylinder {
+          height 0.03
+          radius 0.045
+        }
+        physics Physics {
+          density -1
+          mass 0.4
+        }
+        name "right_wheel"
+      }
+    }
+    # Front Passive Caster Visual
+    Pose {
+      translation 0.10 0 -0.03
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.1 0.1 0.1
+          }
+          geometry Sphere {
+            radius 0.015
+          }
+        }
+      ]
+    }
+    # Rear Passive Caster Visual
+    Pose {
+      translation -0.10 0 -0.03
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.1 0.1 0.1
+          }
+          geometry Sphere {
+            radius 0.015
+          }
+        }
+      ]
+    }
+    # Sensors
+    GPS {
+      name "gps"
+    }
+    InertialUnit {
+      name "inertial_unit"
+    }
+  ]
+  name "agent0"
+  boundingObject Group {
+    children [
+      # Raised central chassis box (never drags on floor)
+      Pose {
+        translation 0 0 0.05
+        children [
+          Box {
+            size 0.22 0.18 0.06
+          }
+        ]
+      }
+      # Front Spherical Caster Contact
+      Pose {
+        translation 0.10 0 -0.03
+        children [
+          Sphere {
+            radius 0.015
+          }
+        ]
+      }
+      # Rear Spherical Caster Contact
+      Pose {
+        translation -0.10 0 -0.03
+        children [
+          Sphere {
+            radius 0.015
+          }
+        ]
+      }
+    ]
+  }
+  physics Physics {
+    density -1
+    mass 3.0
+    centerOfMass [ 0 0 0.01 ]
+  }
+  controller "<extern>"
+  supervisor TRUE
+}

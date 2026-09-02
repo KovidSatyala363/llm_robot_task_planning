@@ -1,0 +1,4 @@
+{
+  "summary": "Navigation skills implementation (navigate_to, follow_waypoints, stop) with closed-loop PID and timeout handling",
+  "updatedAt": "2026-08-29T21:38:39.082881900Z"
+}
