@@ -31,7 +31,7 @@ class TaskAgentNode(Node):
 
     def run_instruction(self, instruction: str):
         print(f"\n" + "="*50)
-        print(f"📥 Instruction: '{instruction}'")
+        print(f"Instruction: '{instruction}'")
         print(f"="*50)
 
         # 1. LLM Tool Calling
@@ -44,13 +44,13 @@ class TaskAgentNode(Node):
         print(f"\n🛡️ [Safety Validator]: {'✅ APPROVED' if valid else '❌ REJECTED'} - {msg}")
 
         if not valid:
-            print(f"🛑 Plan rejected safely. No commands sent to robot.\n")
+            print(f" Plan rejected safely. No commands sent to robot.\n")
             return
 
         # 3. Execution on Webots Robot
-        print(f"\n🚀 Executing Plan on Robot in Webots...")
+        print(f"\n Executing Plan on Robot in Webots...")
         for step_idx, call in enumerate(plan):
-            print(f"▶️ Step {step_idx+1}/{len(plan)}: {call['skill']} {call['arguments']}")
+            print(f" Step {step_idx+1}/{len(plan)}: {call['skill']} {call['arguments']}")
             self.latest_result = None
             self.skill_pub.publish(String(data=json.dumps(call)))
 
@@ -58,14 +58,14 @@ class TaskAgentNode(Node):
             while self.latest_result is None and rclpy.ok():
                 rclpy.spin_once(self, timeout_sec=0.05)
 
-            print(f"📊 [Execution Feedback Result JSON]:")
+            print(f" [Execution Feedback Result JSON]:")
             print(json.dumps(self.latest_result, indent=2))
 
             if not self.latest_result.get("success"):
-                print(f"⚠️ Step failed ({self.latest_result.get('reason')}). Aborting remaining steps.")
+                print(f" Step failed ({self.latest_result.get('reason')}). Aborting remaining steps.")
                 break
 
-        print(f"🎉 Task Execution Finished.\n")
+        print(f" Task Execution Finished.\n")
 
 def main(args=None):
     rclpy.init(args=args)
@@ -84,7 +84,7 @@ def main(args=None):
 
     # Interactive Mode
     print("\n" + "#"*60)
-    print("🎯 Interactive Mode: Type any command (or 'exit' to quit):")
+    print(" Interactive Mode: Type any command (or 'exit' to quit):")
     print("#"*60)
 
     try:
