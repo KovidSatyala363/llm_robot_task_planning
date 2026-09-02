@@ -36,12 +36,12 @@ class TaskAgentNode(Node):
 
         # 1. LLM Tool Calling
         plan = self.planner.generate_plan(instruction)
-        print(f"\n🤖 [LLM Proposed Tool Calls JSON]:")
+        print(f"\n [LLM Proposed Tool Calls JSON]:")
         print(json.dumps(plan, indent=2))
 
         # 2. Safety Validation
         valid, msg = self.validator.validate_plan(plan)
-        print(f"\n🛡️ [Safety Validator]: {'✅ APPROVED' if valid else '❌ REJECTED'} - {msg}")
+        print(f"\n [Safety Validator]: {'✅ APPROVED' if valid else '❌ REJECTED'} - {msg}")
 
         if not valid:
             print(f" Plan rejected safely. No commands sent to robot.\n")
