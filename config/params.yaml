@@ -1,0 +1,9 @@
+navigation:
+  linear_kp: 0.8
+  angular_kp: 1.5
+  max_linear_velocity: 0.35
+  max_angular_velocity: 1.2
+  position_tolerance_m: 0.12
+  heading_tolerance_rad: 0.15
+  default_timeout_s: 25.0
+  control_loop_rate_hz: 20

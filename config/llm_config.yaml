@@ -1,0 +1,32 @@
+# ============================================================================
+# LLM provider defaults for llm_robot_task_planning
+#
+# Precedence (highest first):
+#   1. Shell environment variables (export LLM_PROVIDER=..., launch arg, etc.)
+#   2. .env file in the package root
+#   3. Values in THIS file
+#   4. Hard-coded defaults in llm_planner.py
+#
+# Switch brains at run time with:
+#   ros2 launch llm_robot_task_planning full_system_launch.py llm_provider:=qwen
+#   ros2 launch llm_robot_task_planning full_system_launch.py llm_provider:=ollama
+#   ros2 launch llm_robot_task_planning full_system_launch.py llm_provider:=mock
+# ============================================================================
+llm:
+  # Fallback chain used when LLM_PROVIDER is not set.
+  priority: ["qwen", "ollama", "mock"]
+
+  providers:
+    qwen:
+      api_key: "${QWEN_API_KEY}"        # supplied via .env / environment
+      base_url: "https://dashscope-intl.aliyuncs.com/compatible-mode/v1"
+      model: "qwen3.5-plus"
+      temperature: 0.0
+
+    ollama:
+      base_url: "http://localhost:11434/v1"
+      model: "llama3.2"
+      temperature: 0.0
+
+    mock:
+      description: "Smart offline rule-based planner - no network"
