@@ -1,7 +1,0 @@
-workspace:
-  x_min: -2.3
-  x_max: 2.3
-  y_min: -2.3
-  y_max: 2.3
-  max_plan_steps: 10
-  max_retries_per_skill: 1
