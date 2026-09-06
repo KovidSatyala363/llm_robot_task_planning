@@ -1,0 +1,15 @@
+.env
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+install/
+build/
+log/
+
+# IDE / tooling metadata
+*.metadata.json
+
+# Webots per-user / crash-recovery temp files
+*.wbproj
+.xdp-*
